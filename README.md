@@ -80,13 +80,6 @@ toArg('a', false, {invert: false});
 //=> '--a'
 ```
 
-If there is no value, pass `null`:
-
-```js
-toArg('a', null, {invert: false});
-//=> '--a'
-```
-
 ## Run tests
 
 Install dev dependencies:
