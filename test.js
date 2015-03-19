@@ -8,7 +8,7 @@
 'use strict';
 
 var should = require('should');
-var toArg = require('./');
+var toArg = require('./index');
 
 describe('toArg', function () {
   it('should create a boolean flag from a key:', function () {
@@ -45,11 +45,14 @@ describe('toArg', function () {
     toArg('a', false).should.equal('--no-a');
     toArg('abc', false).should.not.equal('--abc');
     toArg('abc', false).should.equal('--no-abc');
+    toArg('abc', true, {invert: true}).should.equal('--abc');
+    toArg('abc', true, {invert: false}).should.equal('--abc');
   });
 
   it('should not create an inverted flag when `invert: false` is passed:', function () {
     toArg('abc', false, {invert: false}).should.not.equal('--no-abc');
     toArg('abc', false, {invert: false}).should.equal('--abc');
+    toArg('abc', false, {invert: true}).should.equal('--no-abc');
   });
 
   it('should create an arg from numerical value:', function () {
