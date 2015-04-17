@@ -1,8 +1,8 @@
 /*!
  * to-arg <https://github.com/jonschlinkert/to-arg>
  *
- * Copyright (c) 2015 Jon Schlinkert.
- * Licensed under the MIT license.
+ * Copyright (c) 2015, Jon Schlinkert.
+ * Licensed under the MIT License.
  */
 
 'use strict';
