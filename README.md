@@ -78,8 +78,11 @@ toArg('a', false, {invert: false});
 //=> '--a'
 ```
 
-## Run tests
+## Other awesome libs
+ * [option-cache](https://github.com/jonschlinkert/option-cache): Simple API for managing options in JavaScript applications.
+ * [config-cache](https://github.com/jonschlinkert/config-cache): General purpose JavaScript object storage methods.
 
+## Run tests
 Install dev dependencies:
 
 ```bash
@@ -92,7 +95,7 @@ Pull requests and stars are always welcome. For bugs and feature requests, [plea
 ## Author
 
 **Jon Schlinkert**
- 
+
 + [github/jonschlinkert](https://github.com/jonschlinkert)
 + [twitter/jonschlinkert](http://twitter.com/jonschlinkert) 
 
