@@ -7,10 +7,25 @@
 
 'use strict';
 
+/* deps:mocha */
 var should = require('should');
 var toArg = require('./');
 
 describe('toArg', function () {
+  it('should throw an error when invalid args are passed:', function () {
+    (function () {
+      toArg();
+    }).should.throw('to-arg expects a string.');
+
+    (function () {
+      toArg(['abc']);
+    }).should.throw('to-arg expects a string.');
+
+    (function () {
+      toArg('a', {});
+    }).should.throw('to-arg expects the second argument to be an array or a primitive.');
+  });
+
   it('should create a boolean flag from a key:', function () {
     toArg('abc').should.equal('--abc');
     toArg('a').should.equal('--a');
@@ -19,6 +34,11 @@ describe('toArg', function () {
   it('should create an arg from a key and value:', function () {
     toArg('a', 'xyz').should.equal('--a=xyz');
     toArg('aB', 'abc').should.equal('--a-b=abc');
+  });
+
+  it('should convert array values into a comma-separated list:', function () {
+    toArg('a', [1, 2, 3]).should.equal('--a=1,2,3');
+    toArg('a', ['foo', 'bar']).should.equal('--a=foo,bar');
   });
 
   it('should ignore empty strings as values:', function () {
@@ -54,19 +74,5 @@ describe('toArg', function () {
 
   it('should create an arg from numerical value:', function () {
     toArg('abc', 10).should.equal('--abc=10');
-  });
-
-  it('should throw an error when invalid args are passed:', function () {
-    (function () {
-      toArg();
-    }).should.throw('to-arg expects a string.');
-
-    (function () {
-      toArg(['abc']);
-    }).should.throw('to-arg expects a string.');
-
-    (function () {
-      toArg('a', {});
-    }).should.throw('to-arg expects the second argument to be a primitive.');
   });
 });
