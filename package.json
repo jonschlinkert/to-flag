@@ -1,7 +1,7 @@
 {
   "name": "to-arg",
   "description": "Create a command-line argument from a string or string (key) and value.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "homepage": "https://github.com/jonschlinkert/to-arg",
   "author": {
     "name": "Jon Schlinkert",
@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "dashify": "^0.1.0",
-    "is-primitive": "^1.0.0"
+    "is-primitive": "^2.0.0"
   },
   "devDependencies": {
     "mocha": "*",
