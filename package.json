@@ -3,21 +3,12 @@
   "description": "Create a command-line argument from a string or string (key) and value.",
   "version": "1.1.0",
   "homepage": "https://github.com/jonschlinkert/to-arg",
-  "author": {
-    "name": "Jon Schlinkert",
-    "url": "https://github.com/jonschlinkert"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/jonschlinkert/to-arg.git"
-  },
+  "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
+  "repository": "jonschlinkert/to-arg",
   "bugs": {
     "url": "https://github.com/jonschlinkert/to-arg/issues"
   },
-  "license": {
-    "type": "MIT",
-    "url": "https://github.com/jonschlinkert/to-arg/blob/master/LICENSE"
-  },
+  "license": "MIT",
   "files": [
     "index.js"
   ],
