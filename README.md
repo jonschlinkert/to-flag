@@ -2,6 +2,8 @@
 
 > Create a command-line argument from a string or string (key) and value.
 
+Renamed from **to-arg**.
+
 ## Install
 
 Install with [npm](https://www.npmjs.com/)
