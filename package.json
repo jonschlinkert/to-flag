@@ -1,12 +1,12 @@
 {
-  "name": "to-arg",
+  "name": "to-flag",
   "description": "Create a command-line argument from a string or string (key) and value.",
-  "version": "1.1.0",
-  "homepage": "https://github.com/jonschlinkert/to-arg",
+  "version": "1.0.0",
+  "homepage": "https://github.com/jonschlinkert/to-flag",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
-  "repository": "jonschlinkert/to-arg",
+  "repository": "jonschlinkert/to-flag",
   "bugs": {
-    "url": "https://github.com/jonschlinkert/to-arg/issues"
+    "url": "https://github.com/jonschlinkert/to-flag/issues"
   },
   "license": "MIT",
   "files": [
@@ -20,6 +20,7 @@
     "test": "mocha"
   },
   "dependencies": {
+    "collapse-object": "^0.1.0",
     "dashify": "^0.1.0",
     "is-primitive": "^2.0.0"
   },
@@ -35,15 +36,27 @@
     "bin",
     "cli",
     "cmd",
-    "command line",
+    "command",
     "command-line",
+    "expand",
     "flag",
     "flags",
     "line",
     "minimist",
     "nopt",
     "opt",
-    "opts",
-    "options"
-  ]
+    "options",
+    "opts"
+  ],
+  "verb": {
+    "related": {
+      "list": [
+        "to-flags",
+        "minimist-plugins",
+        "minimist-events",
+        "minimist-methods",
+        "minimist-expand"
+      ]
+    }
+  }
 }

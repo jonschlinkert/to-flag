@@ -1,5 +1,5 @@
 /*!
- * to-arg <https://github.com/jonschlinkert/to-arg>
+ * to-flag <https://github.com/jonschlinkert/to-flag>
  *
  * Copyright (c) 2015, Jon Schlinkert.
  * Licensed under the MIT License.
@@ -7,75 +7,82 @@
 
 'use strict';
 
-/* deps:mocha */
+/* deps: mocha */
 var should = require('should');
-var toArg = require('./index');
+var toFlag = require('./');
 
-describe('toArg', function () {
+describe('toFlag', function () {
   it('should throw an error when invalid args are passed:', function () {
     (function () {
-      toArg();
-    }).should.throw('to-arg expects a string.');
+      toFlag();
+    }).should.throw('expected a string.');
 
     (function () {
-      toArg(['abc']);
-    }).should.throw('to-arg expects a string.');
+      toFlag(['abc']);
+    }).should.throw('expected a string.');
 
     (function () {
-      toArg('a', {});
-    }).should.throw('to-arg expects the second argument to be an array or a primitive.');
+      toFlag('a', function(){});
+    }).should.throw('second argument should be an array, object or primitive.');
   });
 
   it('should create a boolean flag from a key:', function () {
-    toArg('abc').should.equal('--abc');
-    toArg('a').should.equal('--a');
+    toFlag('abc').should.equal('--abc');
+    toFlag('a').should.equal('--a');
   });
 
   it('should create an arg from a key and value:', function () {
-    toArg('a', 'xyz').should.equal('--a=xyz');
-    toArg('aB', 'abc').should.equal('--a-b=abc');
+    toFlag('a', 'xyz').should.equal('--a=xyz');
+    toFlag('aB', 'abc').should.equal('--a-b=abc');
   });
 
   it('should convert array values into a comma-separated list:', function () {
-    toArg('a', [1, 2, 3]).should.equal('--a=1,2,3');
-    toArg('a', ['foo', 'bar']).should.equal('--a=foo,bar');
+    toFlag('a', [1, 2, 3]).should.equal('--a=1,2,3');
+    toFlag('a', ['foo', 'bar']).should.equal('--a=foo,bar');
   });
 
   it('should ignore empty strings as values:', function () {
-    toArg('abc', '').should.equal('--abc');
+    toFlag('abc', '').should.equal('--abc');
   });
 
   it('should dash-case the key:', function () {
-    toArg('abcXyz').should.equal('--abc-xyz');
-    toArg('aBc').should.equal('--a-bc');
-    toArg('a b c').should.equal('--a-b-c');
+    toFlag('abcXyz').should.equal('--abc-xyz');
+    toFlag('aBc').should.equal('--a-bc');
+    toFlag('a b c').should.equal('--a-b-c');
   });
 
   it('should not dash-case a single-character key:', function () {
-    toArg('A').should.equal('--a');
+    toFlag('A').should.equal('--A');
   });
 
   it('should create a flag from boolean value:', function () {
-    toArg('abc', true).should.equal('--abc');
-    toArg('abc', true).should.not.equal('--abc=true');
-    toArg('abc', 'true').should.equal('--abc=true');
+    toFlag('abc', true).should.equal('--abc');
+    toFlag('abc', true).should.not.equal('--abc=true');
+    toFlag('abc', 'true').should.equal('--abc=true');
   });
 
   it('should create an inverted flag when the value is strictly `false`:', function () {
-    toArg('a', false).should.equal('--no-a');
-    toArg('abc', false).should.not.equal('--abc');
-    toArg('abc', false).should.equal('--no-abc');
-    toArg('abc', true, {invert: true}).should.equal('--abc');
-    toArg('abc', true, {invert: false}).should.equal('--abc');
+    toFlag('a', false).should.equal('--no-a');
+    toFlag('abc', false).should.not.equal('--abc');
+    toFlag('abc', false).should.equal('--no-abc');
+    toFlag('abc', true, {invert: true}).should.equal('--abc');
+    toFlag('abc', true, {invert: false}).should.equal('--abc');
   });
 
   it('should not create an inverted flag when `invert: false` is passed:', function () {
-    toArg('abc', false, {invert: false}).should.not.equal('--no-abc');
-    toArg('abc', false, {invert: false}).should.equal('--abc');
-    toArg('abc', false, {invert: true}).should.equal('--no-abc');
+    toFlag('abc', false, {invert: false}).should.not.equal('--no-abc');
+    toFlag('abc', false, {invert: false}).should.equal('--abc');
+    toFlag('abc', false, {invert: true}).should.equal('--no-abc');
   });
 
   it('should create an arg from numerical value:', function () {
-    toArg('abc', 10).should.equal('--abc=10');
+    toFlag('abc', 10).should.equal('--abc=10');
+  });
+
+  it('should create an arg from object values:', function () {
+    toFlag('set', {a: 'b'}).should.equal('--set=a:b');
+    toFlag('set', {a: 'b', c: 'd'}).should.equal('--set=a:b|c:d');
+    toFlag('set', {a: 'b', c: 'd', e: 'f'}).should.equal('--set=a:b|c:d|e:f');
+    toFlag('set', {a: {b: 'c'}}).should.equal('--set=a.b:c');
   });
 });
